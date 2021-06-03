@@ -1,0 +1,1 @@
+/home/talha/.doom.d/packages.el
