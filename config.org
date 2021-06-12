@@ -1,20 +1,33 @@
+* General Configuartion
+** User Information
+#+begin_src emacs-lisp :tangle yes
 (setq user-full-name "Talha Abid"
       user-mail-address "talhaabid100@gmail.com")
-
+#+end_src
+** Enable Auto Saving and backups
+#+begin_src emacs-lisp :tangle yes
 (setq auto-save-default t
       make-backup-files t)
-
+#+end_src
+** Enable Custom splash Images (corutesy of Diego Zamboni)
+#+begin_src emacs-lisp :tangle yes
 (let ((alternatives '("doom-emacs-flugo-slant_out_purple-small.png")))
    ;;((alternatives '("doom-emacs-color.png" "doom-emacs-bw-light.svg")))
   (setq fancy-splash-image
         (concat doom-private-dir "splash/"
                 (nth (random (length alternatives)) alternatives))))
-
-(setq doom-font (font-spec :family "JetBrains Mono" :size 18)
-      doom-variable-pitch-font (font-spec :family "Nunito" :size 18))
-
+#+end_src
+** Font setup
+#+begin_src emacs-lisp :tangle yes
+ (setq doom-font (font-spec :family "JetBrains Mono" :size 18)
+       doom-variable-pitch-font (font-spec :family "Nunito" :size 18))
+#+end_src
+** Maximize on startup
+#+begin_src emacs-lisp :tangle yes
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
-
+#+end_src
+** Emulate vim % key
+#+begin_src emacs-lisp :tangle yes
 (after! smartparens
   (defun zz/goto-match-paren (arg)
     "Go to the matching paren/bracket, otherwise (or if ARG is not
@@ -64,10 +77,14 @@
             ((looking-at "\\s\)") (forward-char 1) (sp-backward-sexp))
             (t (self-insert-command (or arg 1))))))
   (map! "%" 'zz/goto-match-paren))
-
+#+end_src
+** Add a thin visual line to seperate windows
+#+begin_src emacs-lisp :tangle yes
 (set-face-background 'vertical-border "grey")
 (set-face-foreground 'vertical-border (face-background 'vertical-border))
-
+#+end_src
+** Theme Setup
+#+begin_src emacs-lisp :tangle yes
 (use-package doom-themes
   :ensure t
   :config
@@ -85,19 +102,27 @@
   (doom-themes-treemacs-config)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
-
+#+end_src
+** Tramp
+#+begin_src emacs-lisp :tangle yes
 (after! tramp
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
-
+#+end_src
+** Balanced and Rainbow parentheses
+#+begin_src emacs-lisp :tangle yes
 ;; (use-package smartparens
 ;;  :config
 ;;  (add-hook 'prog-mode-hook 'smartparens-mode))
 ;;(use-package rainbow-delimiters
 ;;  :config
  ;; (add-hook 'prod-mode-hook ))
+ #+end_src
 
-
-
+** Treemacs config
+#+begin_src emacs-lisp :tangle yes
+#+end_src
+** Markdown
+   #+begin_src emacs-lisp :tangle yes
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
@@ -106,15 +131,25 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+   #+end_src
+** Elcord
+#+begin_src emacs-lisp :tangle yes
 (require 'elcord)
 (elcord-mode)
+#+end_src
+* Custom User functions
+#+begin_src emacs-lisp :tangle yes
+#+end_src
 
-
-
+* Web development
+** Rest client
+#+begin_src emacs-lisp :tangle yes
 (use-package restclient
   :mode
   ("\\.http\\'" . restclient-mode))
-
+#+end_src
+** HTML
+   #+begin_src emacs-lisp :tangle yes
 (use-package web-mode
   :mode
   (("\\.html?\\'"       . web-mode)
@@ -150,24 +185,32 @@
    (sgml-mode . emmet-mode)
    (rjsx-mode . emmet-mode)
    (web-mode  . emmet-mode)))
-
+   #+end_src
+** Typescript
+#+begin_src emacs-lisp :tangle yes
 (use-package typescript-mode
   :hook
   (typescript-mode . lsp)
   :mode (("\\.ts\\'" . typescript-mode)
          ("\\.tsx\\'" . typescript-mode)))
-
+#+end_src
+** Local node modules
+#+begin_src emacs-lisp :tangle yes
 (use-package add-node-modules-path
   :hook
   ((web-mode . add-node-modules-path)
    (rjsx-mode . add-node-modules-path)))
-
+#+end_src
+** Prettier
+#+begin_src emacs-lisp :tangle yes
 (use-package prettier-js
   :hook
   ((js-mode . prettier-js-mode)
    (typescript-mode . prettier-js-mode)
    (rjsx-mode . prettier-js-mode)))
-
+#+end_src
+** Tide
+#+begin_src emacs-lisp :tangle yes
 (use-package tide
   :after
   (typescript-mode js2-mode company flycheck)
@@ -178,7 +221,9 @@
   :config
   (flycheck-add-next-checker 'typescript-tide 'javascript-eslint)
   (flycheck-add-next-checker 'tsx-tide 'javascript-eslint))
-
+#+end_src
+** React
+#+begin_src emacs-lisp :tangle yes
 (use-package rjsx-mode
   :mode
   (("\\.js\\'"   . rjsx-mode)
@@ -188,3 +233,4 @@
   :init
   (setq-default rjsx-basic-offset 2)
   (setq-default rjsx-global-externs '("module" "require" "assert" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON")))
+#+end_src
