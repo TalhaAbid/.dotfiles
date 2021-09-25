@@ -1,6 +1,5 @@
 ## Language Servers Servers
 
-On mac sudo is required to install globally
 
 ### javscript
 
@@ -16,4 +15,6 @@ On mac sudo is required to install globally
 
 ## TreeSitter
 
-npm install -g tree-sitter
+`npm install -g tree-sitter`
+
+`npm install -g tree-sitter-cli`
