@@ -13,3 +13,7 @@ On mac sudo is required to install globally
 ## diagnosticls
 
 `sudo npm install -g diagnostic-languageserver`
+
+## TreeSitter
+
+npm install -g tree-sitter
