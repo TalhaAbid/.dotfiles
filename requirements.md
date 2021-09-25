@@ -3,15 +3,15 @@
 
 ### javscript
 
-`sudo npm install -g typescript typescript-language-server`
+`npm install -g typescript typescript-language-server`
 
 ## python
 
-`sudo npm install -g pyright`
+`npm install -g pyright`
 
 ## diagnosticls
 
-`sudo npm install -g diagnostic-languageserver`
+`npm install -g diagnostic-languageserver`
 
 ## TreeSitter
 
